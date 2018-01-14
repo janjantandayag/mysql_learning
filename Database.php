@@ -65,8 +65,16 @@ class Database {
 	// }
 
 	// MIXED OPERATORS
-	public function combineOperator(){
-		$stmt = $this->connection->prepare('SELECT * FROM customers WHERE customers.country_region NOT IN ("PHILIPPINES","USA")');
+	// public function combineOperator(){
+	// 	$stmt = $this->connection->prepare('SELECT *,customers.id AS customer_id FROM customers,orders WHERE customers.id IN (1,3) AND customers.id = orders.customer_id');
+	// 	$stmt->setFetchMode(PDO::FETCH_ASSOC);
+	// 	$stmt->execute();
+	// 	return $stmt->fetchAll(); 
+	// }
+
+	// ORDER BY
+	public function orderBy(){
+		$stmt = $this->connection->prepare('SELECT * FROM customers ORDER BY company DESC');
 		$stmt->setFetchMode(PDO::FETCH_ASSOC);
 		$stmt->execute();
 		return $stmt->fetchAll(); 
